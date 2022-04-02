@@ -1,4 +1,4 @@
 
 [submodule "Lib/SBT-SDK-F1xx"]
 	path = Lib/SBT-SDK-F1xx
-	url = git@bitbucket.org:embeddedsolarboatpwr/sbt-sdk-f1xx.git
+	url = git@gitlab.com:solar-boat-pwr/firmware.modules.sbt-sdk.git
