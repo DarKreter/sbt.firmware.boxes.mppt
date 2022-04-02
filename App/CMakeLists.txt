@@ -1,19 +1,7 @@
-add_executable(Firmware
-        # Starting procedure
-        Startup/main.cpp
-        Startup/vector_table.cpp
-        # Hardware abstraction
-        Tasks/TaskManager.cpp
-        # User code
-        Tasks/LedDebug.cpp
-)
+include_directories(Common)
 
-target_include_directories(Firmware PRIVATE Tasks/)
+link_libraries(STM32Cube-F1)
+link_libraries(FreeRTOS-Kernel)
+link_libraries(SBT-SDK)
 
-target_link_libraries(Firmware PRIVATE STM32Cube-F1)
-target_link_libraries(Firmware PRIVATE FreeRTOS-Kernel)
-target_link_libraries(Firmware PRIVATE SBT-Hardware)
-
-add_dependencies(Firmware STM32Cube-F1)
-add_dependencies(Firmware FreeRTOS-Kernel)
-add_dependencies(Firmware SBT-Hardware)
+add_subdirectory(UARTEcho)

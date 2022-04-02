@@ -16,6 +16,20 @@ SECTIONS {
         KEEP(*(.rodata))
         *(.rodata*)
         . = ALIGN(4);
+
+        /* Static data constructors */
+        . = ALIGN(4);
+        __preinit_array_start = .;
+        KEEP (*(.preinit_array*))
+        __preinit_array_end = .;
+
+        . = ALIGN(4);
+        __init_array_start = .;
+        KEEP (*(SORT(.init_array.*)))
+        KEEP (*(.init_array*))
+        __init_array_end = .;
+        __end__ = .;
+
     } >FLASH
 
     .ARM.exidx : {
@@ -52,6 +66,6 @@ SECTIONS {
     } > SRAM*/
 
     . = ALIGN(4);
-    __heap_start = . + 0x1000;
+    __heap_start = .;
     end = __heap_start;
 }
