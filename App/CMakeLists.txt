@@ -1,5 +1,3 @@
-include_directories(Common)
-
 link_libraries(STM32Cube-F1)
 link_libraries(FreeRTOS-Kernel)
 link_libraries(SBT-SDK)
