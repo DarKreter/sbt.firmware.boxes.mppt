@@ -3,9 +3,8 @@
 //
 
 #include "CommCAN.hpp"
+#include "ExampleTask.hpp"
 #include "SBT-SDK.hpp"
-#include "Tasks/UARTEcho.hpp"
-#include "Tasks/UARTGatekeeper.hpp"
 
 using namespace SBT::System;
 
@@ -15,9 +14,7 @@ void entryPoint() {
 
   Comm::CAN::Init(Comm::CAN_ID::Source::DEFAULT);
 
-  auto UARTGatekeeperTask = std::make_shared<UARTGatekeeper>();
-  TaskManager::registerTask(UARTGatekeeperTask);
-  TaskManager::registerTask(std::make_shared<UARTEcho>(UARTGatekeeperTask));
+  TaskManager::registerTask(std::make_shared<ExampleTask>());
 
   Start();
 }
