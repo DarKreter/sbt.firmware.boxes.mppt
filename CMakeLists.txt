@@ -5,8 +5,8 @@ set(LINKER_SCRIPT "${CMAKE_SOURCE_DIR}/App/Common/STM32F103CBTx_FLASH.ld")
 set(CMAKE_TOOLCHAIN_FILE ${CMAKE_CURRENT_SOURCE_DIR}/cmake/toolchain-arm-none-eabi.cmake)
 
 project(mppt-controller-firmware
-        VERSION 0.0.1
-        DESCRIPTION "TBD"
+        VERSION 1.0.0
+        DESCRIPTION "MPPT project"
         HOMEPAGE_URL ""
         LANGUAGES CXX C
         )
