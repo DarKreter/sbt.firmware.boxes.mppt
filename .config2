@@ -64,7 +64,7 @@ SBT_CAN_SENDER_QUEUE_SIZE = 5
 # CAN ID
 # One of SBT::System::Comm::CAN_ID::Source values
 # Default: DEFAULT
-SBT_CAN_ID = MPPT_CONTROLLER_1
+SBT_CAN_ID = MPPT_CONTROLLER_2
 
 # CAN mode
 # One of SBT::Hardware::hCAN::Mode values
@@ -80,7 +80,5 @@ SBT_CAN_ID = MPPT_CONTROLLER_1
 # ------------------USER CONFIG-----------------------
 # ----------------------------------------------------
 # MPPT CAN IDs
-# MPPT1 is connected to UART1, MPPT2 to UART2
-# Default: MPPT_1, MPPT_2
-SBT_CAN_ID_MPPT1=MPPT_1
-SBT_CAN_ID_MPPT2=MPPT_2
+SBT_CAN_ID_MPPT1=MPPT_3
+SBT_CAN_ID_MPPT2=MPPT_4
