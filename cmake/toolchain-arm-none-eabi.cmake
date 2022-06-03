@@ -2,7 +2,7 @@
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_LIST_DIR})
 
 # Target definition
-set(CMAKE_SYSTEM_NAME  Generic)
+set(CMAKE_SYSTEM_NAME Generic)
 set(CMAKE_SYSTEM_PROCESSOR arm)
 
 set(CPU_OPTIONS "-mthumb -mcpu=cortex-m3 -DSTM32F103xB")
@@ -10,32 +10,32 @@ set(CPU_OPTIONS "-mthumb -mcpu=cortex-m3 -DSTM32F103xB")
 #---------------------------------------------------------------------------------------
 # Set toolchain paths
 #---------------------------------------------------------------------------------------
-if(NOT DEFINED CMAKE_C_COMPILER OR NOT DEFINED CMAKE_CXX_COMPILER)
+if (NOT DEFINED CMAKE_C_COMPILER OR NOT DEFINED CMAKE_CXX_COMPILER)
     set(TOOLCHAIN arm-none-eabi)
-    if(NOT DEFINED TOOLCHAIN_PREFIX)
-        if(CMAKE_HOST_SYSTEM_NAME STREQUAL Linux)
+    if (NOT DEFINED TOOLCHAIN_PREFIX)
+        if (CMAKE_HOST_SYSTEM_NAME STREQUAL Linux)
             set(TOOLCHAIN_PREFIX "/usr")
-        elseif(CMAKE_HOST_SYSTEM_NAME STREQUAL Darwin)
+        elseif (CMAKE_HOST_SYSTEM_NAME STREQUAL Darwin)
             set(TOOLCHAIN_PREFIX "/usr/local")
-        elseif(CMAKE_HOST_SYSTEM_NAME STREQUAL Windows)
+        elseif (CMAKE_HOST_SYSTEM_NAME STREQUAL Windows)
             message(STATUS "Please specify the TOOLCHAIN_PREFIX !\n For example: -DTOOLCHAIN_PREFIX=\"C:/Program Files/GNU Tools ARM Embedded\" ")
-        else()
+        else ()
             set(TOOLCHAIN_PREFIX "/usr")
             message(STATUS "No TOOLCHAIN_PREFIX specified, using default: " ${TOOLCHAIN_PREFIX})
-        endif()
-    endif()
+        endif ()
+    endif ()
 
     set(TOOLCHAIN_BIN_DIR ${TOOLCHAIN_PREFIX}/bin)
     set(TOOLCHAIN_INC_DIR ${TOOLCHAIN_PREFIX}/${TOOLCHAIN}/include)
     set(TOOLCHAIN_LIB_DIR ${TOOLCHAIN_PREFIX}/${TOOLCHAIN}/lib)
 
-#     Set system depended extensions
-    if(WIN32)
-        set(TOOLCHAIN_EXT ".exe" )
-    else()
-        set(TOOLCHAIN_EXT "" )
-    endif()
-endif()
+    #     Set system depended extensions
+    if (WIN32)
+        set(TOOLCHAIN_EXT ".exe")
+    else ()
+        set(TOOLCHAIN_EXT "")
+    endif ()
+endif ()
 
 # Perform compiler test with static library
 set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
@@ -53,7 +53,7 @@ set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
 # -mabi=aapcs           Defines enums to be a variable sized type.
 set(OBJECT_GEN_FLAGS "${CPU_OPTIONS} -fno-builtin -Werror -Wall -Wextra -pedantic -ffunction-sections -fdata-sections -fomit-frame-pointer -mabi=aapcs")
 
-set(CMAKE_C_FLAGS   "${OBJECT_GEN_FLAGS} -std=gnu17" CACHE INTERNAL "C Compiler options")
+set(CMAKE_C_FLAGS "${OBJECT_GEN_FLAGS} -std=gnu17" CACHE INTERNAL "C Compiler options")
 set(CMAKE_CXX_FLAGS "${OBJECT_GEN_FLAGS} -std=c++17 -fno-use-cxa-atexit" CACHE INTERNAL "C++ Compiler options")
 set(CMAKE_ASM_FLAGS "${OBJECT_GEN_FLAGS} -x assembler-with-cpp" CACHE INTERNAL "ASM Compiler options")
 
@@ -88,11 +88,11 @@ set(CMAKE_EXE_LINKER_FLAGS_RELEASE "-flto -ffat-lto-objects" CACHE INTERNAL "Lin
 #---------------------------------------------------------------------------------------
 # Set compilers
 #---------------------------------------------------------------------------------------
-if(NOT DEFINED CMAKE_C_COMPILER OR NOT DEFINED CMAKE_CXX_COMPILER)
+if (NOT DEFINED CMAKE_C_COMPILER OR NOT DEFINED CMAKE_CXX_COMPILER)
     set(CMAKE_C_COMPILER ${TOOLCHAIN_BIN_DIR}/${TOOLCHAIN}-gcc${TOOLCHAIN_EXT} CACHE INTERNAL "C Compiler")
     set(CMAKE_CXX_COMPILER ${TOOLCHAIN_BIN_DIR}/${TOOLCHAIN}-g++${TOOLCHAIN_EXT} CACHE INTERNAL "C++ Compiler")
     set(CMAKE_ASM_COMPILER ${TOOLCHAIN_BIN_DIR}/${TOOLCHAIN}-gcc${TOOLCHAIN_EXT} CACHE INTERNAL "ASM Compiler")
-endif()
+endif ()
 
 set(CMAKE_FIND_ROOT_PATH ${TOOLCHAIN_PREFIX}/${${TOOLCHAIN}} ${CMAKE_PREFIX_PATH})
 set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)

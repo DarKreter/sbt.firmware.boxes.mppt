@@ -1,1 +1,1 @@
-#add_subdirectory(SBT-Hardware)
+#add_subdirectory(Hardware)

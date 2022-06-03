@@ -47,6 +47,7 @@ SECTIONS {
         __bss_start__ = __bss_start;
         *(.bss)
         *(.bss*)
+        *(COMMON)
         __bss_end = .;
         __bss_end__ = __bss_end;
     } >SRAM
